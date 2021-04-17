@@ -14,7 +14,7 @@ class LocationsViewModelTest : BaseViewModulesTest() {
     }
 
     @Test
-    fun `Verify that text is correct in Characters`() {
-        TestCase.assertEquals(viewModule.text.value, "This s locations Fragment")
+    fun `Verify that text is correct in Locations`() {
+        TestCase.assertEquals(viewModule.text.value, "This is locations Fragment")
     }
 }
