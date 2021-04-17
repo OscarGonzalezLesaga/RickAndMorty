@@ -15,7 +15,3 @@ enum class Status {
 enum class Gender {
     FEMALE, MALE, GENDERLESS, UNKNOWN
 }
-
-inline fun <reified T : Enum<T>, V> ((T) -> V).findValue(value: V): T? {
-    return enumValues<T>().firstOrNull { this(it) == value }
-}
