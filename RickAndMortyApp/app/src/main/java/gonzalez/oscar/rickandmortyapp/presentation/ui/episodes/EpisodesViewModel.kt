@@ -1,13 +1,13 @@
-package gonzalez.oscar.rickandmortyapp.ui.home
+package gonzalez.oscar.rickandmortyapp.presentation.ui.episodes
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class CharactersViewModel : ViewModel() {
+class EpisodesViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is characters Fragment"
+        value = "This is episodes Fragment"
     }
     val text: LiveData<String> = _text
 }
