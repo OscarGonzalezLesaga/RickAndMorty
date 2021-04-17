@@ -1,4 +1,4 @@
-package gonzalez.oscar.rickandmortyapp.ui.dashboard
+package gonzalez.oscar.rickandmortyapp.ui.notifications
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import gonzalez.oscar.rickandmortyapp.R
 
-class DashboardFragment : Fragment() {
+class LocationsFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var mLocationsViewModel: LocationsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
-        dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
+        mLocationsViewModel =
+            ViewModelProvider(this).get(LocationsViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_locations, container, false)
+        val textView: TextView = root.findViewById(R.id.text_notifications)
+        mLocationsViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root

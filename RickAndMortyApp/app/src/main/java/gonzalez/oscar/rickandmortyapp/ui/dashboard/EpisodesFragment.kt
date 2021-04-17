@@ -1,4 +1,4 @@
-package gonzalez.oscar.rickandmortyapp.ui.home
+package gonzalez.oscar.rickandmortyapp.ui.dashboard
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import gonzalez.oscar.rickandmortyapp.R
 
-class HomeFragment : Fragment() {
+class EpisodesFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var mEpisodesViewModel: EpisodesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
+        mEpisodesViewModel =
+            ViewModelProvider(this).get(EpisodesViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_episodes, container, false)
+        val textView: TextView = root.findViewById(R.id.text_dashboard)
+        mEpisodesViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root
