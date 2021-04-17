@@ -1,4 +1,4 @@
-package gonzalez.oscar.rickandmortyapp.ui.home
+package gonzalez.oscar.rickandmortyapp.presentation.ui.characters
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,20 +7,18 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import gonzalez.oscar.rickandmortyapp.R
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CharactersFragment : Fragment() {
 
-    private lateinit var mCharactersViewModel: CharactersViewModel
+    private val mCharactersViewModel: CharactersViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mCharactersViewModel =
-            ViewModelProvider(this).get(CharactersViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_characters, container, false)
         val textView: TextView = root.findViewById(R.id.text_home)
         mCharactersViewModel.text.observe(viewLifecycleOwner, Observer {

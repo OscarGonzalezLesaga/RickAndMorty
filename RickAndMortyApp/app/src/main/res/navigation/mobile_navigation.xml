@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_characters"
-        android:name="gonzalez.oscar.rickandmortyapp.ui.home.CharactersFragment"
+        android:name="gonzalez.oscar.rickandmortyapp.presentation.ui.characters.CharactersFragment"
         android:label="@string/title_characters"
         tools:layout="@layout/fragment_characters" />
 
     <fragment
         android:id="@+id/navigation_episodes"
-        android:name="gonzalez.oscar.rickandmortyapp.ui.dashboard.EpisodesFragment"
+        android:name="gonzalez.oscar.rickandmortyapp.presentation.ui.episodes.EpisodesFragment"
         android:label="@string/title_episodes"
         tools:layout="@layout/fragment_episodes" />
 
     <fragment
         android:id="@+id/navigation_locations"
-        android:name="gonzalez.oscar.rickandmortyapp.ui.notifications.LocationsFragment"
+        android:name="gonzalez.oscar.rickandmortyapp.presentation.ui.locations.LocationsFragment"
         android:label="@string/title_locations"
         tools:layout="@layout/fragment_locations" />
 </navigation>
