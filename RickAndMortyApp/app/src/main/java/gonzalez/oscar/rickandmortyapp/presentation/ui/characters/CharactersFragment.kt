@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import gonzalez.oscar.rickandmortyapp.R
 import gonzalez.oscar.rickandmortyapp.presentation.ui.base.ErrorViewModel
-import gonzalez.oscar.rickandmortyapp.presentation.ui.base.Loading
 import gonzalez.oscar.rickandmortyapp.presentation.ui.base.SuccessViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -34,10 +33,18 @@ class CharactersFragment : Fragment() {
                     .show()
                 is ErrorViewModel -> Toast.makeText(context, "Error cargando la llamada", Toast.LENGTH_SHORT)
                     .show()
-                Loading -> Toast.makeText(context, "Cargando", Toast.LENGTH_SHORT)
-                    .show()
             }
 
+        })
+
+        charactersViewModel.loading.observe(viewLifecycleOwner, { loading ->
+            if (loading) {
+                Toast.makeText(context, "Cargando", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                Toast.makeText(context, "Fin", Toast.LENGTH_SHORT)
+                    .show()
+            }
         })
     }
 

@@ -10,6 +10,6 @@ sealed class ResourceData<T>(
 }
 
 enum class ServiceErrorDTO {
-    UNAUTHORIZED, CONNECTION, UNKOWN
+    UNAUTHORIZED, CONNECTION, UNKNOWN
 }
 
