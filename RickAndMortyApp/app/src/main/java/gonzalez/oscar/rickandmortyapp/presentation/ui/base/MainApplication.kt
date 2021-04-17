@@ -1,4 +1,4 @@
-package gonzalez.oscar.rickandmortyapp.presentation
+package gonzalez.oscar.rickandmortyapp.presentation.ui.base
 
 import android.app.Application
 import gonzalez.oscar.rickandmortyapp.di.modulesRickAndMorty
