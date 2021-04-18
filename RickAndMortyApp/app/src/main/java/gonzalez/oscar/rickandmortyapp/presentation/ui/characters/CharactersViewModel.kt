@@ -12,7 +12,7 @@ import kotlinx.coroutines.Dispatchers
 
 class CharactersViewModel(
     private val allCharacters: GetAllCharactersUseCase,
-    private val defaultDispatcher: CoroutineDispatcher = Dispatchers.IO
+    defaultDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : BaseViewModel(defaultDispatcher) {
 
     private var _dataCharacters = MutableLiveData<StateCharacters>()

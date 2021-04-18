@@ -48,6 +48,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
     implementation "io.insert-koin:koin-android:$koin_version"
     implementation "io.insert-koin:koin-android-ext:$koin_version"
+    implementation "com.squareup.picasso:picasso:2.71828"
     implementation project(":domain")
     implementation project(":data")
     implementation project(":network")
