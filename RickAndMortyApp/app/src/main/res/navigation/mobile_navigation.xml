@@ -3,23 +3,23 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_characters">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="gonzalez.oscar.rickandmortyapp.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_characters"
+        android:name="gonzalez.oscar.rickandmortyapp.presentation.ui.characters.CharactersFragment"
+        android:label="@string/title_characters"
+        tools:layout="@layout/fragment_characters" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="gonzalez.oscar.rickandmortyapp.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_episodes"
+        android:name="gonzalez.oscar.rickandmortyapp.presentation.ui.episodes.EpisodesFragment"
+        android:label="@string/title_episodes"
+        tools:layout="@layout/fragment_episodes" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="gonzalez.oscar.rickandmortyapp.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_locations"
+        android:name="gonzalez.oscar.rickandmortyapp.presentation.ui.locations.LocationsFragment"
+        android:label="@string/title_locations"
+        tools:layout="@layout/fragment_locations" />
 </navigation>
