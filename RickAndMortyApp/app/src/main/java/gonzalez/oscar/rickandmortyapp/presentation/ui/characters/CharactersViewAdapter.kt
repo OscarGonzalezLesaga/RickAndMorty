@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import gonzalez.oscar.domain.character.CartoonCharacter
-import gonzalez.oscar.domain.character.Status.ALIVE
-import gonzalez.oscar.domain.character.Status.DEAD
-import gonzalez.oscar.domain.character.Status.UNKNOWN
+import gonzalez.oscar.domain.CartoonCharacter
+import gonzalez.oscar.domain.Status.ALIVE
+import gonzalez.oscar.domain.Status.DEAD
+import gonzalez.oscar.domain.Status.UNKNOWN
 import gonzalez.oscar.rickandmortyapp.R
 import gonzalez.oscar.rickandmortyapp.presentation.utils.loadImage
 

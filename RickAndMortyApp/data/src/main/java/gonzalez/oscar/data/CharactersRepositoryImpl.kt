@@ -1,7 +1,7 @@
 package gonzalez.oscar.data
 
 import gonzalez.oscar.data.mapper.toDomain
-import gonzalez.oscar.domain.character.CartoonCharacter
+import gonzalez.oscar.domain.CartoonCharacter
 import gonzalez.oscar.domain.character.CharactersRepository
 import gonzalez.oscar.network.ResourceData.Error
 import gonzalez.oscar.network.ResourceData.Success
