@@ -1,5 +1,6 @@
 package gonzalez.oscar.domain.character
 
+import gonzalez.oscar.domain.CartoonCharacter
 import io.mockk.*
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.runBlocking

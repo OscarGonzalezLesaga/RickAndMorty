@@ -2,7 +2,7 @@ package gonzalez.oscar.rickandmortyapp.presentation.ui.characters
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import gonzalez.oscar.domain.character.CartoonCharacter
+import gonzalez.oscar.domain.CartoonCharacter
 import gonzalez.oscar.domain.character.GetAllCharactersUseCase
 import gonzalez.oscar.rickandmortyapp.CoroutinesTestRule
 import gonzalez.oscar.rickandmortyapp.presentation.ui.base.ErrorViewModel
