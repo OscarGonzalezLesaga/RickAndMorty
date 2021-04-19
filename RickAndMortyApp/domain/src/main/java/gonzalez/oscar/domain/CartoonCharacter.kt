@@ -1,4 +1,4 @@
-package gonzalez.oscar.domain.character
+package gonzalez.oscar.domain
 
 data class CartoonCharacter(
     val name: String,

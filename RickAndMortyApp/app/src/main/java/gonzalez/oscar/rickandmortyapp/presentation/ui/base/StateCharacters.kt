@@ -1,6 +1,6 @@
 package gonzalez.oscar.rickandmortyapp.presentation.ui.base
 
-import gonzalez.oscar.domain.character.CartoonCharacter
+import gonzalez.oscar.domain.CartoonCharacter
 
 sealed class StateCharacters
 
