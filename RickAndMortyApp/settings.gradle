@@ -2,5 +2,5 @@ include ':domain'
 include ':usecases'
 include ':network'
 include ':data'
-include ':app'
+include ':presentation'
 rootProject.name = "RickAndMortyApp"
