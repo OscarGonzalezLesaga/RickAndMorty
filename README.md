@@ -14,3 +14,4 @@ The architecture of the project follows the principles of Clean Architecture :
 5. Retrofit (Api call)
 6. Repository pattern
 7. Navigation (Flow application)
+8. Picasso (load server images)
