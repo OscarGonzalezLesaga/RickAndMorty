@@ -10,7 +10,5 @@ java {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation project(path: ':network')
-    implementation project(path: ':usecases')
-    implementation project(path: ':domain')
+    implementation project(":domain")
 }
