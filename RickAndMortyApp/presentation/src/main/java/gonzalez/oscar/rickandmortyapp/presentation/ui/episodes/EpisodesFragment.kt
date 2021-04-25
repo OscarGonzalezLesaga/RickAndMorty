@@ -4,26 +4,38 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import gonzalez.oscar.rickandmortyapp.R
+import gonzalez.oscar.rickandmortyapp.databinding.FragmentEpisodesBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class EpisodesFragment : Fragment() {
 
     private val mEpisodesViewModel: EpisodesViewModel by viewModel()
+    private var _binding: FragmentEpisodesBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val root = inflater.inflate(R.layout.fragment_episodes, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
-        mEpisodesViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+    ): View {
+        _binding = FragmentEpisodesBinding.inflate(layoutInflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initObservers()
+    }
+
+    private fun initObservers() {
+        mEpisodesViewModel.text.observe(viewLifecycleOwner, {
+            binding.textDashboard.text = it
         })
-        return root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
