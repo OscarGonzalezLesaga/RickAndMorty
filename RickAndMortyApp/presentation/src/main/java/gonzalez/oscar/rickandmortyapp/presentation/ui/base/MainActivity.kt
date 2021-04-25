@@ -6,15 +6,17 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import gonzalez.oscar.rickandmortyapp.R
 import gonzalez.oscar.rickandmortyapp.R.id
-import kotlinx.android.synthetic.main.activity_main.nav_view
+import gonzalez.oscar.rickandmortyapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val navController = findNavController(id.nav_host_fragment)
         val appBarConfiguration = AppBarConfiguration(
@@ -23,6 +25,6 @@ class MainActivity : AppCompatActivity() {
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
-        nav_view.setupWithNavController(navController)
+        binding.navView.setupWithNavController(navController)
     }
 }
