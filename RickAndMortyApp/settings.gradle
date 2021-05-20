@@ -1,3 +1,4 @@
+include ':local'
 include ':domain'
 include ':usecases'
 include ':network'

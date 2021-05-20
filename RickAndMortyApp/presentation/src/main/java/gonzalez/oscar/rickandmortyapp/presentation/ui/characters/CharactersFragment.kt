@@ -53,9 +53,9 @@ class CharactersFragment : Fragment() {
     }
 
     private fun initData() {
-        charactersViewModel.getData()
         binding.listCharacters.layoutManager = LinearLayoutManager(context)
         binding.listCharacters.adapter = adapter
+        charactersViewModel.getData()
     }
 
     override fun onDestroyView() {
