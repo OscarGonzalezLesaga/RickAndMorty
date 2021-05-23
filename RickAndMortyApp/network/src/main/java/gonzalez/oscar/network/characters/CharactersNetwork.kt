@@ -11,8 +11,8 @@ import java.net.UnknownHostException
 
 class CharactersNetwork : BaseNetwork<CharactersApi>(CharactersApi::class.java) {
 
-    suspend fun getAllCharacters(): ResourceData<List<CharactersDTO>?> {
-        val result = kotlin.runCatching { service.getAllCharacters() }
+    suspend fun getAllCharacters(page: Int): ResourceData<List<CharactersDTO>?> {
+        val result = kotlin.runCatching { service.getAllCharacters(page) }
         return if (result.isSuccess) {
             Success(result.getOrNull()?.listCharacters)
         } else {

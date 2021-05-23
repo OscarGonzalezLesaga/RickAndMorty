@@ -29,9 +29,9 @@ class CharactersNetworkTest {
             every { listCharacters } returns listCharactersMock
         }
 
-        coEvery { api.getAllCharacters() } returns resultServer
+        coEvery { api.getAllCharacters(1) } returns resultServer
         runBlocking {
-            val result = network.getAllCharacters()
+            val result = network.getAllCharacters(1)
             assert(result is Success)
             assertEquals(result.data, listCharactersMock)
         }
@@ -39,9 +39,9 @@ class CharactersNetworkTest {
 
     @Test
     fun `Verify network return error connection with data when server return error unknown host`() {
-        coEvery { api.getAllCharacters() } throws UnknownHostException()
+        coEvery { api.getAllCharacters(1) } throws UnknownHostException()
         runBlocking {
-            val result = network.getAllCharacters()
+            val result = network.getAllCharacters(1)
             assert(result is ResourceData.Error)
             assert(result.error == CONNECTION)
         }
@@ -49,9 +49,9 @@ class CharactersNetworkTest {
 
     @Test
     fun `Verify network return error unknown with data when server return unexpected error`() {
-        coEvery { api.getAllCharacters() } throws Exception()
+        coEvery { api.getAllCharacters(1) } throws Exception()
         runBlocking {
-            val result = network.getAllCharacters()
+            val result = network.getAllCharacters(1)
             assert(result is ResourceData.Error)
             assert(result.error == UNKNOWN)
         }

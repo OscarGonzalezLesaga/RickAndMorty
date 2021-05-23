@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
-abstract class BaseListAdapter<T>(diffUtil: DiffUtil.ItemCallback<T>) :
-    ListAdapter<T, BaseViewHolder<T>>(diffUtil) {
+abstract class BaseListAdapter<T : Any>(diffUtil: DiffUtil.ItemCallback<T>) :
+    PagingDataAdapter<T, BaseViewHolder<T>>(diffUtil) {
 
     @LayoutRes
     abstract fun getItemLayout(): Int
@@ -22,11 +22,18 @@ abstract class BaseListAdapter<T>(diffUtil: DiffUtil.ItemCallback<T>) :
     )
 
     override fun onBindViewHolder(holder: BaseViewHolder<T>, position: Int) {
-        holder.bind(getItem(position))
+        val item = getItem(position)
+        if (item != null) {
+            holder.bind(item)
+        } else {
+            holder.bindPlaceHolder()
+        }
     }
 }
 
 abstract class BaseViewHolder<T>(view: View) : ViewHolder(view) {
 
     abstract fun bind(item: T)
+
+    abstract fun bindPlaceHolder()
 }

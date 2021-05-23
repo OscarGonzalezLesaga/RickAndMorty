@@ -36,6 +36,7 @@ class CharacterViewHolder(private val view: View, private val itemClickListener:
                 ALIVE -> Color.GREEN
                 DEAD -> Color.RED
                 UNKNOWN -> Color.BLUE
+                else -> Color.WHITE
             }
             statusCharacter.setTextColor(colorStatus)
 
@@ -43,6 +44,10 @@ class CharacterViewHolder(private val view: View, private val itemClickListener:
                 itemClickListener?.invoke(item, this)
             }
         }
+    }
+
+    override fun bindPlaceHolder() {
+        TODO("Not yet implemented")
     }
 }
 

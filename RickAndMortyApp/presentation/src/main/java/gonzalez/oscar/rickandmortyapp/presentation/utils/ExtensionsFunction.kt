@@ -10,7 +10,7 @@ import com.squareup.picasso.Picasso
 import gonzalez.oscar.rickandmortyapp.R
 
 fun ImageView.loadImage(
-    url: String,
+    url: String?,
     defaultImage: Drawable = ContextCompat.getDrawable(context, R.drawable.ic_person)!!
 ) {
     Picasso.get().load(url).placeholder(defaultImage).into(this)
