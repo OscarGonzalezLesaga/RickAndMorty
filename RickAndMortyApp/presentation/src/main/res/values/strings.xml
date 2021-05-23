@@ -4,4 +4,6 @@
     <string name="title_episodes">Episodes</string>
     <string name="title_locations">Locations</string>
     <string name="error_load_characters">Error when load characters</string>
+    <string name="character_image_transition" translatable="false">Transition image character</string>
+    <string name="name_character_transition" translatable="false">Transition name character</string>
 </resources>

@@ -1,15 +1,22 @@
 package gonzalez.oscar.rickandmortyapp.presentation.ui.characters
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import gonzalez.oscar.domain.CartoonCharacter
 import gonzalez.oscar.rickandmortyapp.R
+import gonzalez.oscar.rickandmortyapp.databinding.CharacterViewBinding
 import gonzalez.oscar.rickandmortyapp.databinding.FragmentCharactersBinding
 import gonzalez.oscar.rickandmortyapp.presentation.ui.base.ErrorViewModel
 import gonzalez.oscar.rickandmortyapp.presentation.ui.base.SuccessViewModel
+import gonzalez.oscar.rickandmortyapp.presentation.ui.detailcharacter.DetailCharacterActivity
+import gonzalez.oscar.rickandmortyapp.presentation.ui.detailcharacter.DetailCharacterActivity.Companion.CHARACTER_EXTRA
 import gonzalez.oscar.rickandmortyapp.presentation.utils.hide
 import gonzalez.oscar.rickandmortyapp.presentation.utils.show
 import gonzalez.oscar.rickandmortyapp.presentation.utils.toast
@@ -54,7 +61,19 @@ class CharactersFragment : Fragment() {
     private fun initData() {
         charactersViewModel.getData()
         binding.listCharacters.layoutManager = LinearLayoutManager(context)
+        adapter.itemClickListener = (::goToDetailCharacter)
         binding.listCharacters.adapter = adapter
+    }
+
+    private fun goToDetailCharacter(cartoonCharacter: CartoonCharacter, view: CharacterViewBinding) {
+        val detailIntent = Intent(context, DetailCharacterActivity::class.java)
+        val imageViewPair = Pair.create<View, String>(view.imageCharacter, getString(R.string.character_image_transition))
+        val textViewPair = Pair.create<View, String>(view.nameCharacter, getString(R.string.name_character_transition))
+        val options =
+            ActivityOptionsCompat.makeSceneTransitionAnimation(requireActivity(), imageViewPair, textViewPair)
+
+        detailIntent.putExtra(CHARACTER_EXTRA, cartoonCharacter) // pass your bundle data
+        startActivity(detailIntent, options.toBundle())
     }
 
     override fun onDestroyView() {

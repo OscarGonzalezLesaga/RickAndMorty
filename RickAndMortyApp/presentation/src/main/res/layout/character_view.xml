@@ -16,6 +16,7 @@
 
         <ImageView
             android:id="@+id/image_character"
+            android:transitionName="character_image_transition"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center" />
@@ -24,8 +25,9 @@
             android:id="@+id/name_character"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:transitionName="name_character_transition"
             android:layout_gravity="center"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:gravity="center"
             android:textSize="18sp"
             android:textStyle="bold"
