@@ -1,54 +1,46 @@
 package gonzalez.oscar.rickandmortyapp.presentation.ui.characters
 
 import android.graphics.Color
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.DiffUtil
 import gonzalez.oscar.domain.CartoonCharacter
 import gonzalez.oscar.domain.Status.ALIVE
 import gonzalez.oscar.domain.Status.DEAD
 import gonzalez.oscar.domain.Status.UNKNOWN
 import gonzalez.oscar.rickandmortyapp.R
 import gonzalez.oscar.rickandmortyapp.databinding.CharacterViewBinding
+import gonzalez.oscar.rickandmortyapp.presentation.ui.base.BaseListAdapter
+import gonzalez.oscar.rickandmortyapp.presentation.ui.base.BaseViewHolder
 import gonzalez.oscar.rickandmortyapp.presentation.utils.loadImage
 
-class CharactersViewAdapter(private var listCharacters: List<CartoonCharacter> = emptyList()) :
-    RecyclerView.Adapter<CharactersViewAdapter.ViewHolder>() {
+class CharactersViewAdapter : BaseListAdapter<CartoonCharacter>(CartoonCharacterDiff()) {
 
-    fun loadCharacters(newData: List<CartoonCharacter>) {
-        listCharacters = newData
-        notifyDataSetChanged()
-    }
+    override fun getItemLayout() = R.layout.character_view
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    override fun getViewHolder(view: View) = CharacterViewHolder(view)
+}
 
-        private val binding = CharacterViewBinding.bind(view)
+class CharacterViewHolder(private val view: View) : BaseViewHolder<CartoonCharacter>(view) {
 
-        fun bind(character: CartoonCharacter) {
-            with(binding) {
-                nameCharacter.text = character.name
-                statusCharacter.text = character.status.toString()
-                genderCharacter.text = character.gender.toString()
-                imageCharacter.loadImage(character.image)
-                val colorStatus = when (character.status) {
-                    ALIVE -> Color.GREEN
-                    DEAD -> Color.RED
-                    UNKNOWN -> Color.WHITE
-                }
-                statusCharacter.setTextColor(colorStatus)
+    override fun bind(item: CartoonCharacter) {
+        with(CharacterViewBinding.bind(view)) {
+            nameCharacter.text = item.name
+            statusCharacter.text = item.status.toString()
+            genderCharacter.text = item.gender.toString()
+            imageCharacter.loadImage(item.image)
+            val colorStatus = when (item.status) {
+                ALIVE -> Color.GREEN
+                DEAD -> Color.RED
+                UNKNOWN -> Color.BLUE
             }
+            statusCharacter.setTextColor(colorStatus)
         }
     }
+}
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int) = ViewHolder(
-        LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.character_view, viewGroup, false)
-    )
+class CartoonCharacterDiff : DiffUtil.ItemCallback<CartoonCharacter>() {
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(listCharacters[position])
-    }
+    override fun areItemsTheSame(oldItem: CartoonCharacter, newItem: CartoonCharacter) = oldItem.name == newItem.name
 
-    override fun getItemCount() = listCharacters.size
+    override fun areContentsTheSame(oldItem: CartoonCharacter, newItem: CartoonCharacter) = oldItem == newItem
 }

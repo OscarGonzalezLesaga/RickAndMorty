@@ -20,7 +20,6 @@ class CharactersFragment : Fragment() {
     private val charactersViewModel: CharactersViewModel by viewModel()
 
     private val adapter = CharactersViewAdapter()
-
     private var _binding: FragmentCharactersBinding? = null
     private val binding get() = _binding!!
 
@@ -37,7 +36,7 @@ class CharactersFragment : Fragment() {
     private fun initObservers() {
         charactersViewModel.dataCharacters.observe(viewLifecycleOwner, {
             when (it) {
-                is SuccessViewModel -> adapter.loadCharacters(it.data)
+                is SuccessViewModel -> adapter.submitList(it.data)
                 is ErrorViewModel -> toast(getString(R.string.error_load_characters))
             }
 
