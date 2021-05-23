@@ -13,14 +13,18 @@ import gonzalez.oscar.rickandmortyapp.presentation.ui.base.BaseListAdapter
 import gonzalez.oscar.rickandmortyapp.presentation.ui.base.BaseViewHolder
 import gonzalez.oscar.rickandmortyapp.presentation.utils.loadImage
 
-class CharactersViewAdapter : BaseListAdapter<CartoonCharacter>(CartoonCharacterDiff()) {
+class CharactersViewAdapter :
+    BaseListAdapter<CartoonCharacter>(CartoonCharacterDiff()) {
+
+    var itemClickListener: ((CartoonCharacter, CharacterViewBinding) -> Unit)? = null
 
     override fun getItemLayout() = R.layout.character_view
 
-    override fun getViewHolder(view: View) = CharacterViewHolder(view)
+    override fun getViewHolder(view: View) = CharacterViewHolder(view, itemClickListener)
 }
 
-class CharacterViewHolder(private val view: View) : BaseViewHolder<CartoonCharacter>(view) {
+class CharacterViewHolder(private val view: View, private val itemClickListener: ((CartoonCharacter, CharacterViewBinding) -> Unit)?) :
+    BaseViewHolder<CartoonCharacter>(view) {
 
     override fun bind(item: CartoonCharacter) {
         with(CharacterViewBinding.bind(view)) {
@@ -34,6 +38,10 @@ class CharacterViewHolder(private val view: View) : BaseViewHolder<CartoonCharac
                 UNKNOWN -> Color.BLUE
             }
             statusCharacter.setTextColor(colorStatus)
+
+            view.setOnClickListener {
+                itemClickListener?.invoke(item, this)
+            }
         }
     }
 }
