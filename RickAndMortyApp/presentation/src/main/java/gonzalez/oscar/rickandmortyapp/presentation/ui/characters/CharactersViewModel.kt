@@ -6,7 +6,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import gonzalez.oscar.data.CharactersDataSource
+import gonzalez.oscar.data.datasource.CharactersDataSource
 import gonzalez.oscar.domain.CartoonCharacter
 import kotlinx.coroutines.flow.Flow
 

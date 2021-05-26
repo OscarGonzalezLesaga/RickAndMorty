@@ -1,4 +1,4 @@
-package gonzalez.oscar.data
+package gonzalez.oscar.data.datasource
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
@@ -14,7 +14,7 @@ class CharactersDataSource(private val network: CharactersNetwork = CharactersNe
         val page = params.key ?: 1
         return when (val allCharacters = network.getAllCharacters(page)) {
             is Success -> LoadResult.Page(
-                data = allCharacters.data?.map { it.toDomain() } ?: emptyList(),
+                data = allCharacters.data?.toDomain() ?: emptyList(),
                 prevKey = if (page != 1) page - 1 else null,
                 nextKey = page + 1
             )

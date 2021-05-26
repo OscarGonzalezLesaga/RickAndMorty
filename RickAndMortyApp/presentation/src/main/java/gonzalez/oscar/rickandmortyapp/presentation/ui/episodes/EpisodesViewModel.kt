@@ -6,7 +6,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import gonzalez.oscar.data.EpisodesDataSource
+import gonzalez.oscar.data.datasource.EpisodesDataSource
 import gonzalez.oscar.domain.Episode
 import kotlinx.coroutines.flow.Flow
 

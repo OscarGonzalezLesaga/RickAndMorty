@@ -6,4 +6,5 @@ object NetworkConfig {
 
     const val getAllCharactersUrl= "character"
     const val getAllEpisodesUrl= "episode"
+    const val getAllLocationsUrl= "location"
 }
