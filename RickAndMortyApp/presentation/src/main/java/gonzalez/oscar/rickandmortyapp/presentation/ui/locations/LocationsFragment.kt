@@ -5,15 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import gonzalez.oscar.domain.LocationUniverse
 import gonzalez.oscar.rickandmortyapp.databinding.FragmentLocationsBinding
+import gonzalez.oscar.rickandmortyapp.databinding.LocationViewBinding
+import gonzalez.oscar.rickandmortyapp.presentation.utils.toast
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LocationsFragment : Fragment() {
 
-    private val mLocationsViewModel: LocationsViewModel by viewModel()
+    private val locationViewHolder: LocationsViewModel by viewModel()
     private var _binding: FragmentLocationsBinding? = null
     private val binding get() = _binding!!
+    private val adapter = LocationsViewAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,12 +33,25 @@ class LocationsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initView()
         initObservers()
     }
 
+    private fun initView() {
+        binding.listLocations.layoutManager = LinearLayoutManager(context)
+        adapter.itemClickListener = (::goToDetailLocation)
+        binding.listLocations.adapter = adapter
+    }
+
+    private fun goToDetailLocation(locationUniverse: LocationUniverse, locationViewBinding: LocationViewBinding) {
+        toast("To Do")
+    }
+
     private fun initObservers() {
-        mLocationsViewModel.text.observe(viewLifecycleOwner, Observer {
-            binding.textNotifications.text = it
-        })
+        lifecycleScope.launch {
+            locationViewHolder.locations.collectLatest {
+                adapter.submitData(it)
+            }
+        }
     }
 }
