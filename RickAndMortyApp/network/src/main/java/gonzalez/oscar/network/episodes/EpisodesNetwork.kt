@@ -1,4 +1,4 @@
-package gonzalez.oscar.network.characters
+package gonzalez.oscar.network.episodes
 
 import gonzalez.oscar.network.base.BaseNetwork
 import gonzalez.oscar.network.base.ResourceData
@@ -9,12 +9,12 @@ import gonzalez.oscar.network.base.ServiceErrorDTO.UNKNOWN
 import retrofit2.HttpException
 import java.net.UnknownHostException
 
-class CharactersNetwork : BaseNetwork<CharactersApi>(CharactersApi::class.java) {
+class EpisodesNetwork : BaseNetwork<EpisodesApi>(EpisodesApi::class.java) {
 
-    suspend fun getAllCharacters(page: Int): ResourceData<List<CharactersDTO>?> {
-        val result = kotlin.runCatching { service.getAllCharacters(page) }
+    suspend fun getAllEpisodes(page: Int): ResourceData<List<EpisodesDTO>?> {
+        val result = kotlin.runCatching { service.getAllEpisodes(page) }
         return if (result.isSuccess) {
-            Success(result.getOrNull()?.listCharacters)
+            Success(result.getOrNull()?.listEpisodes)
         } else {
             when (result.exceptionOrNull()) {
                 is UnknownHostException -> ResourceData.Error(CONNECTION)

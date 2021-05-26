@@ -16,8 +16,6 @@ import gonzalez.oscar.rickandmortyapp.databinding.CharacterViewBinding
 import gonzalez.oscar.rickandmortyapp.databinding.FragmentCharactersBinding
 import gonzalez.oscar.rickandmortyapp.presentation.ui.detailcharacter.DetailCharacterActivity
 import gonzalez.oscar.rickandmortyapp.presentation.ui.detailcharacter.DetailCharacterActivity.Companion.CHARACTER_EXTRA
-import gonzalez.oscar.rickandmortyapp.presentation.utils.hide
-import gonzalez.oscar.rickandmortyapp.presentation.utils.show
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -36,8 +34,8 @@ class CharactersFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        initView()
         initObservers()
-        initData()
     }
 
     private fun initObservers() {
@@ -46,16 +44,9 @@ class CharactersFragment : Fragment() {
                 adapter.submitData(it)
             }
         }
-        /*charactersViewModel.dataCharacters.observe(viewLifecycleOwner, {
-            when (it) {
-                is SuccessViewModel -> adapter.submitList(it.data)
-                is ErrorViewModel -> toast(getString(R.string.error_load_characters))
-            }
-
-        })*/
     }
 
-    private fun initData() {
+    private fun initView() {
         binding.listCharacters.layoutManager = LinearLayoutManager(context)
         adapter.itemClickListener = (::goToDetailCharacter)
         binding.listCharacters.adapter = adapter

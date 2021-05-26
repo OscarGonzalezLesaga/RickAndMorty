@@ -1,6 +1,6 @@
 package gonzalez.oscar.network.characters
 
-import gonzalez.oscar.network.NetworkConfig.getAllCharactersUrl
+import gonzalez.oscar.network.base.NetworkConfig.getAllCharactersUrl
 import retrofit2.http.GET
 import retrofit2.http.Query
 

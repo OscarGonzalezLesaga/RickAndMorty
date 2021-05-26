@@ -9,12 +9,12 @@ import gonzalez.oscar.domain.Status.DEAD
 import gonzalez.oscar.domain.Status.UNKNOWN
 import gonzalez.oscar.rickandmortyapp.R
 import gonzalez.oscar.rickandmortyapp.databinding.CharacterViewBinding
-import gonzalez.oscar.rickandmortyapp.presentation.ui.base.BaseListAdapter
+import gonzalez.oscar.rickandmortyapp.presentation.ui.base.BaseListPagingAdapter
 import gonzalez.oscar.rickandmortyapp.presentation.ui.base.BaseViewHolder
 import gonzalez.oscar.rickandmortyapp.presentation.utils.loadImage
 
 class CharactersViewAdapter :
-    BaseListAdapter<CartoonCharacter>(CartoonCharacterDiff()) {
+    BaseListPagingAdapter<CartoonCharacter>(CartoonCharacterDiff()) {
 
     var itemClickListener: ((CartoonCharacter, CharacterViewBinding) -> Unit)? = null
 

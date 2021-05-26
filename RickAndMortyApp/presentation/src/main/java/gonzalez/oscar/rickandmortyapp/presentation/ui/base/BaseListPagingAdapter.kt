@@ -8,7 +8,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
-abstract class BaseListAdapter<T : Any>(diffUtil: DiffUtil.ItemCallback<T>) :
+abstract class BaseListPagingAdapter<T : Any>(diffUtil: DiffUtil.ItemCallback<T>) :
     PagingDataAdapter<T, BaseViewHolder<T>>(diffUtil) {
 
     @LayoutRes

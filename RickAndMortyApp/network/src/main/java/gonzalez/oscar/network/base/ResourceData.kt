@@ -1,4 +1,4 @@
-package gonzalez.oscar.network
+package gonzalez.oscar.network.base
 
 sealed class ResourceData<T>(
     val data: T? = null,

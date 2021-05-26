@@ -1,9 +1,9 @@
 package gonzalez.oscar.network.characters
 
-import gonzalez.oscar.network.ResourceData
-import gonzalez.oscar.network.ResourceData.Success
-import gonzalez.oscar.network.ServiceErrorDTO.CONNECTION
-import gonzalez.oscar.network.ServiceErrorDTO.UNKNOWN
+import gonzalez.oscar.network.base.ResourceData
+import gonzalez.oscar.network.base.ResourceData.Success
+import gonzalez.oscar.network.base.ServiceErrorDTO.CONNECTION
+import gonzalez.oscar.network.base.ServiceErrorDTO.UNKNOWN
 import io.mockk.*
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.runBlocking

@@ -4,10 +4,10 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import gonzalez.oscar.data.mapper.toDomain
 import gonzalez.oscar.domain.CartoonCharacter
-import gonzalez.oscar.network.ResourceData.Success
+import gonzalez.oscar.network.base.ResourceData.Success
 import gonzalez.oscar.network.characters.CharactersNetwork
 
-class CharactersRemotePagingSource(private val network: CharactersNetwork = CharactersNetwork()) :
+class CharactersDataSource(private val network: CharactersNetwork = CharactersNetwork()) :
     PagingSource<Int, CartoonCharacter>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CartoonCharacter> {
@@ -23,6 +23,9 @@ class CharactersRemotePagingSource(private val network: CharactersNetwork = Char
     }
 
     override fun getRefreshKey(state: PagingState<Int, CartoonCharacter>): Int? {
-        TODO("Not yet implemented")
+        return state.anchorPosition?.let {
+            state.closestPageToPosition(it)?.prevKey?.plus(1)
+                ?: state.closestPageToPosition(it)?.nextKey?.minus(1)
+        }
     }
 }
