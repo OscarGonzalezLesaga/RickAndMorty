@@ -8,18 +8,16 @@ import android.view.ViewGroup
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import gonzalez.oscar.domain.CartoonCharacter
 import gonzalez.oscar.rickandmortyapp.R
 import gonzalez.oscar.rickandmortyapp.databinding.CharacterViewBinding
 import gonzalez.oscar.rickandmortyapp.databinding.FragmentCharactersBinding
-import gonzalez.oscar.rickandmortyapp.presentation.ui.base.ErrorViewModel
-import gonzalez.oscar.rickandmortyapp.presentation.ui.base.SuccessViewModel
 import gonzalez.oscar.rickandmortyapp.presentation.ui.detailcharacter.DetailCharacterActivity
 import gonzalez.oscar.rickandmortyapp.presentation.ui.detailcharacter.DetailCharacterActivity.Companion.CHARACTER_EXTRA
-import gonzalez.oscar.rickandmortyapp.presentation.utils.hide
-import gonzalez.oscar.rickandmortyapp.presentation.utils.show
-import gonzalez.oscar.rickandmortyapp.presentation.utils.toast
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CharactersFragment : Fragment() {
@@ -36,30 +34,19 @@ class CharactersFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        initView()
         initObservers()
-        initData()
     }
 
     private fun initObservers() {
-        charactersViewModel.dataCharacters.observe(viewLifecycleOwner, {
-            when (it) {
-                is SuccessViewModel -> adapter.submitList(it.data)
-                is ErrorViewModel -> toast(getString(R.string.error_load_characters))
+        lifecycleScope.launch {
+            charactersViewModel.characters.collectLatest {
+                adapter.submitData(it)
             }
-
-        })
-
-        charactersViewModel.loading.observe(viewLifecycleOwner, { load ->
-            if (load) {
-                binding.loadingView.show()
-            } else {
-                binding.loadingView.hide()
-            }
-        })
+        }
     }
 
-    private fun initData() {
-        charactersViewModel.getData()
+    private fun initView() {
         binding.listCharacters.layoutManager = LinearLayoutManager(context)
         adapter.itemClickListener = (::goToDetailCharacter)
         binding.listCharacters.adapter = adapter

@@ -1,6 +1,7 @@
 package gonzalez.oscar.network.characters
 
 import com.google.gson.annotations.SerializedName
+import gonzalez.oscar.network.base.BaseInfoDTO
 
 data class OriginDTO(
     @SerializedName("name") val name: String,
@@ -30,11 +31,4 @@ data class CharactersDTO(
 data class AllCharactersDTO(
     @SerializedName("info") val baseInfo: BaseInfoDTO,
     @SerializedName("results") val listCharacters: List<CharactersDTO>
-)
-
-data class BaseInfoDTO(
-    @SerializedName("count") val count: Int,
-    @SerializedName("pages") val pages: Int,
-    @SerializedName("next") val next: String,
-    @SerializedName("prev") val prev: String,
 )
